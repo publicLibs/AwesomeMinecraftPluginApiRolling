@@ -3,12 +3,13 @@ package publicLibs.ampa;
 import java.io.IOException;
 import java.util.NoSuchElementException;
 
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import publicLibs.ampa.config.core.PluginYmlConfig;
 import publicLibs.ampa.utils.reader.core.config.PluginYmlReader;
 
-public abstract class AbstractMinecraftPlugin extends JavaPlugin {
+public abstract class AbstractMinecraftPlugin extends JavaPlugin implements Listener {
 	public @Override void onDisable() {
 		onPluginDisable();
 	}
@@ -16,6 +17,7 @@ public abstract class AbstractMinecraftPlugin extends JavaPlugin {
 	public @Override void onEnable() {
 		try {
 			readPluginYml();
+			getServer().getPluginManager().registerEvents(this, this);
 
 			// TODO регистрация команд
 			onPluginEnable();
