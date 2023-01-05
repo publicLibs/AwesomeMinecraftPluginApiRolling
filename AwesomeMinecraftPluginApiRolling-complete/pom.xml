@@ -4,6 +4,6 @@
 		<groupId>com.github.publicLibs</groupId>
 		<artifactId>AwesomeMinecraftPluginApiRolling</artifactId>
 		<version>main-SNAPSHOT</version>
-	</parent>
+	</parent> 
 	<artifactId>AwesomeMinecraftPluginApiRolling-complete</artifactId>
 </project>
