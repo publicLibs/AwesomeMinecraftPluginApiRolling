@@ -9,7 +9,7 @@ import com.github.publicLibs.freedom1b2830.awesomeio.IoUtils;
 import com.github.publicLibs.freedom1b2830.awesomeio.ResourcesIoUtils;
 
 import publicLibs.ampa.AbstractMinecraftPlugin;
-import publicLibs.ampa.config.core.PluginYmlConfig;
+import publicLibs.ampa.config.core.pluginYml.PluginYmlConfig;
 
 public class PluginYmlReader {
 	public static final ObjectMapper YAML_MAPPER = new ObjectMapper(new YAMLFactory());

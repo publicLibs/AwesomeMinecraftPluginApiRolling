@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import publicLibs.ampa.config.core.PluginYmlConfig;
+import publicLibs.ampa.config.core.pluginYml.PluginYmlConfig;
 import publicLibs.ampa.utils.reader.core.config.PluginYmlReader;
 
 public abstract class AbstractMinecraftPlugin extends JavaPlugin implements Listener {
