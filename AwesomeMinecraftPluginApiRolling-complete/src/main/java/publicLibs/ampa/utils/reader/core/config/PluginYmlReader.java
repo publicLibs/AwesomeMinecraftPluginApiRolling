@@ -21,8 +21,7 @@ public class PluginYmlReader {
 	 *
 	 */
 	public static PluginYmlConfig read() throws NoSuchElementException, IOException {
-		try (var pluginYmlResource = ResourcesIoUtils.readResource(AbstractMinecraftPlugin.class.getClassLoader(),
-				"plugin.yml")) {
+		try (var pluginYmlResource = ResourcesIoUtils.readResource(AbstractMinecraftPlugin.class, "plugin.yml")) {
 			final var pluginYmlBytes = IoUtils.isToBytes(pluginYmlResource);
 			return YAML_MAPPER.readValue(pluginYmlBytes, PluginYmlConfig.class);
 		}
