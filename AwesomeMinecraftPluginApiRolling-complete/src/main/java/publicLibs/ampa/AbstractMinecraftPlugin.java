@@ -2,7 +2,9 @@ package publicLibs.ampa;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,6 +12,19 @@ import publicLibs.ampa.config.core.pluginYml.PluginYmlConfig;
 import publicLibs.ampa.utils.reader.core.config.PluginYmlReader;
 
 public abstract class AbstractMinecraftPlugin extends JavaPlugin implements Listener {
+	public Stream<? extends Player> getPlayers() {
+		return getPlayers(null);
+	}
+
+	public Stream<? extends Player> getPlayers(final String permission) {
+		return getServer().getOnlinePlayers().stream().filter((final var player) -> {
+			if (permission == null) {
+				return true;
+			}
+			return player.hasPermission(permission);
+		});
+	}
+
 	public @Override void onDisable() {
 		onPluginDisable();
 	}
@@ -48,4 +63,16 @@ public abstract class AbstractMinecraftPlugin extends JavaPlugin implements List
 
 		return pluginYml;
 	}
+
+	/**
+	 * @param format
+	 */
+	public void sendBroadCastMessage(final String message) {
+		getPlayers().parallel().forEachOrdered(player -> player.sendMessage(message));
+	}
+
+	public void sendBroadCastMessage(final String permission, final String message) {
+		getPlayers(permission).parallel().forEachOrdered(player -> player.sendMessage(message));
+	}
+
 }
