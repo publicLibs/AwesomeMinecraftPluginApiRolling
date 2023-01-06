@@ -8,6 +8,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.github.publicLibs.freedom1b2830.awesomeio.IoUtils;
 import com.github.publicLibs.freedom1b2830.awesomeio.ResourcesIoUtils;
 
+import publicLibs.ampa.AbstractMinecraftPlugin;
 import publicLibs.ampa.config.core.PluginYmlConfig;
 
 public class PluginYmlReader {
@@ -20,7 +21,8 @@ public class PluginYmlReader {
 	 *
 	 */
 	public static PluginYmlConfig read() throws NoSuchElementException, IOException {
-		try (var pluginYmlResource = ResourcesIoUtils.readResource("plugin.yml")) {
+		try (var pluginYmlResource = ResourcesIoUtils.readResource(AbstractMinecraftPlugin.class.getClassLoader(),
+				"plugin.yml")) {
 			final var pluginYmlBytes = IoUtils.isToBytes(pluginYmlResource);
 			return YAML_MAPPER.readValue(pluginYmlBytes, PluginYmlConfig.class);
 		}
